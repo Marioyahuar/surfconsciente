@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Landing</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Preloader -->
+    <div id="preloader">
+      <!-- Paso 1 -->
+      <img id="gif1" src="img/gif1.gif" class="preload-img visible" />
+
+      <!-- Paso 2 -->
+      <img id="logoParpadeo" src="img/logo.png" class="preload-img fade-logo" />
+
+      <!-- Paso 3 -->
+      <img
+        id="surfTexto"
+        src="img/surfconsciente.png"
+        class="preload-img shake-text"
+      />
+    </div>
+
+    <!-- Landing principal -->
+    <div id="landing" class="hidden">
+      <div class="top-gradient"></div>
+
+      <!-- Header -->
+      <header>
+        <img src="img/logo.png" alt="Logo" class="logo" />
+        <div class="hamburger">&#9776;</div>
+      </header>
+
+      <div class="landing-text">
+        <h2>CONECTAMOS TU SURFING</h2>
+        <h2>TOMAR CONSCIENCIA DE LO ACONTECIDO EN TU SESIÓN DE SURF</h2>
+        <h2>ES LA CLAVE</h2>
+      </div>
+
+      <!-- Flechas -->
+      <div class="arrow left">&#10094;</div>
+      <div class="arrow right">&#10095;</div>
+    </div>
+
+    <script src="script.js"></script>
+
+    <!-- Overlay + Menú -->
+    <div id="menuOverlay" class="hidden">
+      <div class="menu-panel">
+        <div class="menu-header">
+          <span class="menu-title">MENU</span>
+          <span class="menu-close" id="menuClose">✕</span>
+        </div>
+        <hr />
+        <ul class="menu-list">
+          <li><a href="about.html">ABOUT</a></li>
+          <li><a href="ventajas.html">VENTAJAS</a></li>
+          <li><a href="metodo.html">MÉTODO SURF CONSCIENTE</a></li>
+          <li class="coming-soon">GALERIA</li>
+          <li class="coming-soon">SHOP & TIENDA</li>
+          <li class="coming-soon">SURFSKATE</li>
+          <li class="coming-soon">CONTACTO</li>
+        </ul>
+        <hr />
+        <ul class="menu-list">
+          <li class="coming-soon">LOGIN</li>
+          <li class="coming-soon">TESTIMONIO</li>
+        </ul>
+        <div class="menu-footer">
+          <img src="img/facebook.png" alt="Facebook" />
+          <img src="img/youtube.png" alt="YouTube" />
+          <img src="img/instagram.png" alt="Instagram" />
+        </div>
+        <p class="copyright-text">Copyright 2025 Surf Consciente</p>
+      </div>
+    </div>
+  </body>
+</html>

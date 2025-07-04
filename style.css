@@ -1,0 +1,533 @@
+@font-face {
+  font-family: "DIN";
+  src: url("fonts/DIN.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DIN";
+  src: url("fonts/DIN-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: "DIN", sans-serif;
+}
+
+/* Preloader */
+.preload-img {
+  max-width: 200px;
+  margin: 10px 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease-in-out, visibility 0s linear 0.5s;
+  position: absolute;
+  z-index: 0;
+}
+
+.visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.5s ease-in-out;
+  z-index: 1;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Parpadeo suave */
+
+/* Temblor tipo grafiti */
+.shake-text.visible {
+  animation: shake 0.3s infinite;
+}
+
+#preloader {
+  background: black;
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999;
+}
+#preloader .gif {
+  max-width: 200px;
+  margin: 10px 0;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+}
+#preloader .gif.delay {
+  animation-delay: 1.5s;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Reemplazar por esto */
+.fade-logo.visible {
+  animation: fadeOnce 1s ease-in-out forwards;
+}
+
+@keyframes fadeOnce {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ANIMACIÓN: Temblor para el texto */
+.shake-text {
+  animation: shake 0.3s infinite;
+}
+
+/* NUEVA ANIMACIÓN */
+@keyframes fadeInHoldOut {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Aplicar animación solo al logo */
+#logoParpadeo.visible {
+  animation: fadeInHoldOut 2.5s ease-in-out forwards;
+}
+
+/* Animación de parpadeo suave */
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Animación de temblor (tipo grafiti vibrando) */
+@keyframes shake {
+  0% {
+    transform: translate(1px, 0px) rotate(0deg);
+  }
+  25% {
+    transform: translate(-1px, 1px) rotate(-0.5deg);
+  }
+  50% {
+    transform: translate(1px, -1px) rotate(0.5deg);
+  }
+  75% {
+    transform: translate(-1px, 1px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, 0px) rotate(-0.5deg);
+  }
+}
+
+/* Landing principal */
+#landing {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: background-image 0.5s ease-in-out;
+}
+
+/* Header */
+header {
+  position: absolute;
+  top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  z-index: 10001;
+}
+/* Header en páginas internas */
+body.internal-bg header {
+  top: 10px; /* o menos espacio */
+}
+
+body.internal-bg .logo {
+  height: 8vh; /* más pequeño solo en internas */
+}
+header a {
+  display: block;
+  margin: 0 auto;
+  width: fit-content;
+}
+.logo {
+  height: 12vh;
+  margin: 0 auto;
+}
+.hamburger {
+  font-size: 5vh;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  right: 30px;
+}
+
+/* Flechas */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  color: #ccc;
+  background: rgba(0, 0, 0, 0.7);
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+.arrow.left {
+  left: 20px;
+}
+.arrow.right {
+  right: 20px;
+}
+
+/* Ocultador inicial */
+.hidden {
+  display: none;
+}
+
+.top-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 150px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+  z-index: 1;
+  pointer-events: none;
+}
+
+body.internal-bg .top-gradient {
+  height: 100px;
+}
+
+/* Overlay */
+#menuOverlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  z-index: 10000;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Mostramos el overlay */
+#menuOverlay.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Panel del menú */
+.menu-panel {
+  background-color: white;
+  width: 50vh;
+  height: 75vh;
+  padding: 35px 25px 25px 50px;
+  border-radius: 10px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Header del menú */
+
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-title {
+  font-weight: bold;
+  font-size: 18px;
+  font-weight: bold; /* usa DIN Bold */
+}
+
+.menu-close {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Listas */
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+.menu-list li {
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-weight: normal; /* usa DIN Regular */
+}
+
+.menu-list a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: normal;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.menu-list a:hover {
+  transform: translateX(5px);
+  color: #666; /* o el color que prefieras para hover */
+}
+
+/* Footer con íconos */
+.menu-footer {
+  margin-top: auto;
+  display: flex;
+  gap: 15px;
+  justify-content: flex-start; /* antes era center */
+}
+.menu-footer img {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  cursor: pointer;
+}
+.copyright-text {
+  font-size: 12px;
+  text-align: left;
+  color: #333;
+  margin-top: 10px;
+}
+.menu-panel {
+  transform: translateY(20px);
+  border-radius: 0;
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  margin-bottom: 20px;
+}
+
+#menuOverlay.visible .menu-panel {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 25px 0; /* ↑ agrega espacio arriba y abajo */
+}
+
+/* Landing Text */
+
+.landing-text {
+  position: absolute;
+  bottom: 10vh; /* a 10% desde abajo */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 5;
+  color: white;
+  text-transform: uppercase;
+  font-family: "DIN", sans-serif;
+  font-weight: normal;
+  letter-spacing: 5px;
+  width: 90%;
+  max-width: 1200px;
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .landing-text h2:nth-child(2) {
+    white-space: normal;
+    line-height: 1;
+  }
+}
+
+.landing-text h1,
+.landing-text h2 {
+  margin-bottom: 15px;
+  font-weight: normal;
+  line-height: 0.5; /* ← puedes bajarlo aún más si quieres más compacto */
+}
+
+/* INTERNAL PAGES */
+
+body.internal-bg {
+  background: white;
+  color: #222;
+  font-family: "DIN", sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+}
+
+.internal-content {
+  padding: 100px 30px 50px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.internal-content h1 {
+  font-size: 32px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+.internal-content p,
+.internal-content li {
+  font-size: 16px;
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+.internal-content ul {
+  padding-left: 20px;
+  list-style-type: disc;
+}
+
+.internal-img {
+  max-width: 100%;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+/* Título con animación al hover */
+.about-title {
+  display: block;
+  margin: 40px auto 30px;
+  max-width: 300px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.ventajas-title {
+  display: block;
+  margin: 40px auto 30px;
+  max-width: 400px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.shake-hover:hover {
+  animation: shake 0.3s infinite;
+}
+
+/* Texto justificado con márgenes */
+.about-text p {
+  text-align: justify;
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+/* Galería de imágenes */
+.about-gallery {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0;
+  flex-wrap: nowrap; /* ← esto evita que bajen de línea */
+  /* ← por si se ve en pantallas más pequeñas */
+  gap: 20px;
+}
+
+.ventajas-gallery {
+  display: flex;
+  justify-content: space-between;
+  margin: 40px 0;
+  flex-wrap: nowrap; /* ← esto evita que bajen de línea */
+  /* ← por si se ve en pantallas más pequeñas */
+  gap: 20px;
+}
+
+.about-gallery img {
+  width: 30%;
+  max-width: none;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.ventajas-gallery img {
+  width: 100%;
+  max-width: none;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+/* Footer con imagen centrada */
+.about-footer {
+  text-align: center;
+  margin: 60px 0 30px;
+}
+
+.about-footer img {
+  max-height: 80px;
+}
+
+/* Asegúrate que estas fuentes estén cargadas arriba */
+strong {
+  font-weight: bold;
+}
+
+.coming-soon {
+  position: relative;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.coming-soon::after {
+  content: "Coming soon";
+  position: absolute;
+  bottom: 0%;
+  left: 40%;
+  transform: translateX(0%);
+  background: black;
+  color: white;
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.coming-soon:hover::after {
+  opacity: 1;
+}
