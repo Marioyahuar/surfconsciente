@@ -187,6 +187,10 @@ header a {
 .logo {
   height: 12vh;
   margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: scale(1.05);
 }
 .hamburger {
   font-size: 5vh;
@@ -194,6 +198,10 @@ header a {
   cursor: pointer;
   position: absolute;
   right: 30px;
+  transition: transform 0.2s ease;
+}
+.hamburger:hover {
+  transform: scale(1.1);
 }
 
 /* Flechas */
@@ -211,6 +219,10 @@ header a {
   border-radius: 50%;
   cursor: pointer;
   z-index: 10;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+.arrow:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 .arrow.left {
   left: 20px;
