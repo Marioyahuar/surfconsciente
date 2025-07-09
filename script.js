@@ -1,27 +1,29 @@
 const preloader = document.getElementById("preloader");
 const landing = document.getElementById("landing");
-const fondoImgs = ["img/fondo1.jpg", "img/fondo2.jpg", "img/fondo3.jpg"];
-
-let current = 0;
-
 const gif1 = document.getElementById("gif1");
 const logo = document.getElementById("logoParpadeo");
 const texto = document.getElementById("surfTexto");
 
+const fondoImgs = ["img/fondo1.jpg", "img/fondo2.jpg", "img/fondo3.jpg"];
+let current = 0;
+
+// Cambio entre pasos del preloader
 function switchStep(fromEl, toEl, delay = 1500) {
   return new Promise((resolve) => {
     fromEl.classList.remove("visible");
 
     setTimeout(() => {
-      // Asegura que el anterior se esconda completamente antes de mostrar el siguiente
       toEl.classList.add("visible");
       resolve();
-    }, 600); // Esperamos a que se complete el fadeOut de 0.5s (500ms)
+    }, 600); // tiempo del fadeOut
   });
 }
 
+// Preloader solo en landing
 window.addEventListener("load", async () => {
   const alreadyVisited = sessionStorage.getItem("visitedLanding");
+
+  if (!preloader || !landing || !gif1 || !logo || !texto) return;
 
   if (alreadyVisited) {
     preloader.style.display = "none";
@@ -32,7 +34,7 @@ window.addEventListener("load", async () => {
 
   await new Promise((r) => setTimeout(r, 1500));
   await switchStep(gif1, logo);
-  await new Promise((r) => setTimeout(r, 2500)); // esperar que termine la animación
+  await new Promise((r) => setTimeout(r, 2500));
   texto.classList.add("visible");
   await new Promise((r) => setTimeout(r, 1500));
 
@@ -46,42 +48,51 @@ window.addEventListener("load", async () => {
   }, 500);
 });
 
-// Cambiar fondo
+// Cambiar fondo (landing)
 const updateBackground = () => {
-  landing.style.backgroundImage = `url(${fondoImgs[current]})`;
+  if (landing) {
+    landing.style.backgroundImage = `url(${fondoImgs[current]})`;
+  }
 };
 
-// Flechas
-document.querySelector(".arrow.left").addEventListener("click", () => {
-  current = (current - 1 + fondoImgs.length) % fondoImgs.length;
-  updateBackground();
-});
+// Flechas (solo si existen)
+const arrowLeft = document.querySelector(".arrow.left");
+const arrowRight = document.querySelector(".arrow.right");
 
-document.querySelector(".arrow.right").addEventListener("click", () => {
-  current = (current + 1) % fondoImgs.length;
-  updateBackground();
-});
+if (arrowLeft && arrowRight && landing) {
+  arrowLeft.addEventListener("click", () => {
+    current = (current - 1 + fondoImgs.length) % fondoImgs.length;
+    updateBackground();
+  });
 
+  arrowRight.addEventListener("click", () => {
+    current = (current + 1) % fondoImgs.length;
+    updateBackground();
+  });
+}
+
+// Menú hamburguesa (todas las páginas)
 document.addEventListener("DOMContentLoaded", () => {
   const menuOverlay = document.getElementById("menuOverlay");
   const menuClose = document.getElementById("menuClose");
   const hamburgerBtn = document.querySelector(".hamburger");
 
-  // Abrir menú
-  hamburgerBtn.addEventListener("click", () => {
-    console.log("event added");
-    menuOverlay.classList.add("visible");
-  });
+  if (menuOverlay && menuClose && hamburgerBtn) {
+    // Abrir menú
+    hamburgerBtn.addEventListener("click", () => {
+      menuOverlay.classList.add("visible");
+    });
 
-  // Cerrar menú
-  menuClose.addEventListener("click", () => {
-    menuOverlay.classList.remove("visible");
-  });
-
-  // Cerrar haciendo clic fuera del panel
-  menuOverlay.addEventListener("click", (e) => {
-    if (e.target === menuOverlay) {
+    // Cerrar menú
+    menuClose.addEventListener("click", () => {
       menuOverlay.classList.remove("visible");
-    }
-  });
+    });
+
+    // Cerrar haciendo clic fuera del panel
+    menuOverlay.addEventListener("click", (e) => {
+      if (e.target === menuOverlay) {
+        menuOverlay.classList.remove("visible");
+      }
+    });
+  }
 });
