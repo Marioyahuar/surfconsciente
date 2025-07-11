@@ -695,3 +695,143 @@ strong {
 .popup-close:hover {
   color: #333;
 }
+
+/* Media Queries para Responsividad del Popup */
+
+/* Tablets y pantallas medianas (768px - 1024px) */
+@media (max-width: 1024px) {
+  .popup-container {
+    width: 90vw;
+    height: 70vh;
+    max-width: 800px;
+  }
+  
+  .popup-gif {
+    right: -15vw;
+    width: 25vw;
+  }
+  
+  .popup-right {
+    padding: 30px;
+  }
+  
+  .popup-right h2 {
+    font-size: 20px;
+  }
+}
+
+/* Tablets pequeñas (600px - 768px) */
+@media (max-width: 768px) {
+  .popup-container {
+    width: 95vw;
+    height: 80vh;
+    max-height: 600px;
+  }
+  
+  .popup-gif {
+    right: -12vw;
+    width: 20vw;
+  }
+  
+  .popup-right {
+    padding: 25px;
+  }
+  
+  .popup-right h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .popup-right p {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+}
+
+/* Móviles (hasta 600px) */
+@media (max-width: 600px) {
+  .popup-container {
+    flex-direction: column;
+    width: 95vw;
+    height: 90vh;
+    max-height: 700px;
+  }
+  
+  .popup-left {
+    flex: 0 0 40%;
+    min-height: 200px;
+  }
+  
+  .popup-right {
+    flex: 1;
+    padding: 20px;
+    justify-content: flex-start;
+  }
+  
+  .popup-right h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    margin-top: 10px;
+  }
+  
+  .popup-right p {
+    font-size: 12px;
+    margin-bottom: 15px;
+  }
+  
+  .popup-right form {
+    gap: 12px;
+  }
+  
+  .popup-right input {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .popup-right button {
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  .popup-right .disclaimer {
+    font-size: 9px;
+    margin-top: 10px;
+  }
+  
+  .popup-gif {
+    right: -10vw;
+    top: 20%;
+    width: 15vw;
+    max-width: 80px;
+  }
+  
+  .popup-close {
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+  }
+}
+
+/* Móviles muy pequeños (hasta 400px) */
+@media (max-width: 400px) {
+  .popup-container {
+    width: 98vw;
+    height: 95vh;
+  }
+  
+  .popup-right {
+    padding: 15px;
+  }
+  
+  .popup-right h2 {
+    font-size: 14px;
+  }
+  
+  .popup-right p {
+    font-size: 11px;
+  }
+  
+  .popup-gif {
+    display: none;
+  }
+}
