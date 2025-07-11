@@ -29,6 +29,11 @@ window.addEventListener("load", async () => {
     preloader.style.display = "none";
     landing.classList.remove("hidden");
     updateBackground();
+    
+    // Mostrar popup después de 1 segundo para visitantes recurrentes
+    setTimeout(() => {
+      showNewsletterPopup();
+    }, 1000);
     return;
   }
 
@@ -45,6 +50,11 @@ window.addEventListener("load", async () => {
     landing.classList.remove("hidden");
     updateBackground();
     sessionStorage.setItem("visitedLanding", "true");
+    
+    // Mostrar popup después de 1 segundo
+    setTimeout(() => {
+      showNewsletterPopup();
+    }, 1000);
   }, 500);
 });
 
@@ -93,6 +103,56 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.target === menuOverlay) {
         menuOverlay.classList.remove("visible");
       }
+    });
+  }
+});
+
+// Función para mostrar el popup del newsletter
+function showNewsletterPopup() {
+  const popup = document.getElementById("newsletterPopup");
+  if (popup) {
+    popup.classList.remove("hidden");
+    popup.classList.add("visible");
+  }
+}
+
+// Funcionalidad del formulario del popup
+document.addEventListener("DOMContentLoaded", () => {
+  const nameInput = document.getElementById("nameInput");
+  const emailInput = document.getElementById("emailInput");
+  const subscribeBtn = document.getElementById("subscribeBtn");
+  const newsletterForm = document.getElementById("newsletterForm");
+  const popupClose = document.getElementById("popupClose");
+  const newsletterPopup = document.getElementById("newsletterPopup");
+
+  if (nameInput && emailInput && subscribeBtn) {
+    // Activar/desactivar botón según los inputs
+    function toggleSubscribeButton() {
+      const isValid = nameInput.value.trim() !== "" && emailInput.value.trim() !== "";
+      subscribeBtn.disabled = !isValid;
+    }
+
+    nameInput.addEventListener("input", toggleSubscribeButton);
+    emailInput.addEventListener("input", toggleSubscribeButton);
+
+    // Manejar envío del formulario
+    if (newsletterForm) {
+      newsletterForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        // Aquí iría la lógica de envío del formulario
+        console.log("Formulario enviado:", {
+          name: nameInput.value,
+          email: emailInput.value
+        });
+      });
+    }
+  }
+
+  // Cerrar popup con el botón X
+  if (popupClose && newsletterPopup) {
+    popupClose.addEventListener("click", () => {
+      newsletterPopup.classList.remove("visible");
+      newsletterPopup.classList.add("hidden");
     });
   }
 });

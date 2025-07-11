@@ -543,3 +543,155 @@ strong {
 .coming-soon:hover::after {
   opacity: 1;
 }
+
+/* Newsletter Popup */
+.newsletter-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10002;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.newsletter-popup.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup-container {
+  position: relative;
+  display: flex;
+  width: 80vh;
+  height: 60vh;
+  background-color: white;
+  border-radius: 0;
+  overflow: visible;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.popup-left {
+  flex: 1;
+  overflow: hidden;
+}
+
+.popup-left img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.popup-right {
+  flex: 1;
+  background-color: black;
+  color: white;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: "DIN", sans-serif;
+}
+
+.popup-right h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.popup-right p {
+  font-size: 14px;
+  margin-bottom: 25px;
+  line-height: 1.3;
+  font-weight: normal;
+  text-align: center;
+}
+
+.popup-right form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.popup-right input {
+  padding: 12px;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  background-color: white;
+  color: black;
+  font-family: "DIN", sans-serif;
+}
+
+.popup-right input::placeholder {
+  color: #888;
+}
+
+.popup-right button {
+  padding: 12px;
+  background-color: #444;
+  color: white;
+  border: none;
+  border-radius: 0;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "DIN", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.popup-right button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+.popup-right button:not(:disabled):hover {
+  background-color: #333;
+}
+
+.popup-right .disclaimer {
+  font-size: 10px;
+  margin-top: 15px;
+  margin-bottom: 0;
+  color: #ccc;
+}
+
+.popup-gif {
+  position: absolute;
+  right: -20vh;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 30vh;
+  height: auto;
+  z-index: 10003;
+}
+
+.popup-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  z-index: 10004;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.popup-close:hover {
+  color: #333;
+}
